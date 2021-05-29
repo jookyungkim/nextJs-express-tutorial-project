@@ -6,6 +6,8 @@ const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const path = require("path");
+const hpp = require("hpp");
+const helmet = require("helmet");
 
 const postRouter = require("./routes/post");
 const userRouter = require("./routes/user");
@@ -27,7 +29,6 @@ passportConfig();
 
 // 벡엔드 디버깅 용도
 // 프런트에서 벡엔드로 어떤걸 보냈는지 뜬다.
-app.use(morgan("dev"));
 
 // origin: * 모두다 허용
 // origin: true 보낸 곳의 주소가 자동으로 들러가서 편리함
