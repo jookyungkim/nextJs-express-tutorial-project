@@ -29,6 +29,13 @@ passportConfig();
 
 // 벡엔드 디버깅 용도
 // 프런트에서 벡엔드로 어떤걸 보냈는지 뜬다.
+if (process.env.NODE_ENV === "production") {
+  app.use(morgan("combined"));
+  app.use(hpp());
+  app.use(helmet());
+} else {
+  app.use(morgan("dev"));
+}
 
 // origin: * 모두다 허용
 // origin: true 보낸 곳의 주소가 자동으로 들러가서 편리함
