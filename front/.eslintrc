@@ -1,0 +1,45 @@
+{
+    "parser": "babel-eslint", // 최신문법도 에러 표시 발생을 하지 않는다.
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "extends": [
+        "airbnb",
+        "eslint:recommended",
+        "plugin:prettier/recommended"
+    ],
+    "plugins": [
+        "import",
+        "react-hooks",
+        "prettier"
+    ],
+    "rules": {
+        "jsx-a11y/label-has-associated-control": "off",
+        "jsx-a11y/anchor-is-vail": "off",
+        "no-console": "off",
+        "import/no-extraneous-dependencies": "off",
+        "import/no-unresolved": "off",
+        "react/forbid-prop-types": "off",
+        "react/jsx-filename-extension": "off",
+        "react/jsx-one-expression-per-line": "off",
+        "react/require-default-props": "off",
+        "linebreak-style": "off",
+        "prettier/prettier": "off",
+        "consistent-return": "off",
+        "no-unused-vars": "off",
+        "react/prop-types": "off",
+        "react/no-array-index-key": "off",
+        "no-param-reassign": "off",
+        "no-case-declarations": "off",
+        "no-alert": "off"
+    }
+}
