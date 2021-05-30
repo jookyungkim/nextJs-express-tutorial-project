@@ -82,6 +82,6 @@ app.use((err, req, res, next) => {
   console.log("에러 미들웨어 서버 실행 중!");
 });
 
-app.listen(3065, () => {
+app.listen(80, () => {
   console.log("서버 실행 중");
 });
