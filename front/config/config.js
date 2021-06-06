@@ -1,1 +1,1 @@
-export const backUrl = "http://54.180.155.91";
+export const backUrl = "http://api.nodejoo.site";

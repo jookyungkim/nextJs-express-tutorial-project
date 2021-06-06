@@ -33,18 +33,32 @@ if (process.env.NODE_ENV === "production") {
   app.use(morgan("combined"));
   app.use(hpp());
   app.use(helmet());
+  app.use(
+    cors({
+      origin: "http://nodejoo.site",
+      credentials: true, // 쿠키를 같이 서버에 전달하고 싶으면 credentials 설정을 해줘야한다.(기본 값은 false)
+    })
+  );
 } else {
   app.use(morgan("dev"));
+  app.use(
+    cors({
+      origin: true,
+      credentials: true, // 쿠키를 같이 서버에 전달하고 싶으면 credentials 설정을 해줘야한다.(기본 값은 false)
+    })
+  );
 }
 
 // origin: * 모두다 허용
 // origin: true 보낸 곳의 주소가 자동으로 들러가서 편리함
+/*
 app.use(
   cors({
     origin: true,
     credentials: true, // 쿠키를 같이 서버에 전달하고 싶으면 credentials 설정을 해줘야한다.(기본 값은 false)
   })
 );
+*/
 // 업로드파일 서비스 제공
 // 운영체제 마다 back/uploads 또는 back\uploads 가 될 수 있는데 이걸 join이 통일성 있게 사용할 수 있게 해준다.
 // __dirnmae : 현재폴더 name (back 폴더) 의마한다.
