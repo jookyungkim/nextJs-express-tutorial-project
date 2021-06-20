@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Head from "next/head";
 import { END } from "redux-saga";
+import axios from "axios";
 
 import { Avatar, Card } from "antd";
 import AppLayout from "../components/AppLayout";
@@ -45,6 +46,11 @@ const About = () => {
 };
 export const getServerSideProps = wrapper.getServerSideProps(
   async (context) => {
+    const cookie = context.req ? context.req.headers.cookie : "";
+    axios.defaults.headers.Cookie = "";
+    if (context.req && cookie) {
+      axios.defaults.headers.Cookie = cookie;
+    }
     context.store.dispatch({
       type: LOAD_USER_REQUEST,
       data: 2,
