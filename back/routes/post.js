@@ -9,6 +9,8 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs"); // 파일시스템을 조작 할수 있는 fs 모듈
+const multerS3 = require("multer-s3");
+const AWS = require("aws-sdk");
 
 const { Post, Comment, Image, User, Hashtag } = require("../models");
 const { isLoggedIn } = require("./mddlewares");
@@ -23,7 +25,26 @@ try {
   fs.mkdirSync("uploads");
 }
 
+AWS.config.update({
+  accessKeyId: process.env.S3_ACCESS_KEY_ID,
+  secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+  region: "ap-northeast-2",
+});
+
+// S3 multer 적용
+const upload = multer({
+  storage: multerS3({
+    s3: new AWS.S3(),
+    bucket: "react-nodebird-s3",
+    key(req, file, cd) {
+      cd(null, `original/${Date.now()} ${path.basename(file.originalname)}`);
+    },
+  }),
+  limits: { fileSize: 20 * 1024 * 1024 }, // 20MB
+});
+
 // 파일업로드 환경설정
+/*
 const upload = multer({
   storage: multer.diskStorage({
     destination(req, file, done) {
@@ -37,6 +58,7 @@ const upload = multer({
   }),
   limits: { fileSize: 20 * 1024 * 1024 }, // 20MB
 });
+*/
 
 router.post("/", isLoggedIn, upload.none(), async (req, res, next) => {
   // POST /post
@@ -194,7 +216,9 @@ router.post(
   async (req, res, next) => {
     // POST /post/images
     console.log(req.files);
-    res.json(req.files.map((v) => v.filename));
+    //res.json(req.files.map((v) => v.filename));
+    // s3 적용
+    res.json(req.files.map((v) => v.location));
   }
 );
 
