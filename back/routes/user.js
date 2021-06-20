@@ -47,7 +47,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.post("/login", isNotLoggedIn, (req, res, next) => {
+router.post("/login", (req, res, next) => {
   // POST /user/login
   passport.authenticate("local", (err, user, info) => {
     if (err) {
