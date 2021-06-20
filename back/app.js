@@ -44,7 +44,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(
     cors({
       origin: true,
-      credentials: true, // 쿠키를 같이 서버에 전달하고 싶으면 credentials 설정을 해줘야한다.(기본 값은 false)
+      credentials: true,
     })
   );
 }
@@ -96,6 +96,12 @@ app.use((err, req, res, next) => {
   console.log("에러 미들웨어 서버 실행 중!");
 });
 
-app.listen(80, () => {
-  console.log("서버 실행 중");
-});
+if (process.env.NODE_ENV === "production") {
+  app.listen(80, () => {
+    console.log("서버 실행 중");
+  });
+} else {
+  app.listen(3065, () => {
+    console.log("로컬 서버 실행 중");
+  });
+}

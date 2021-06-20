@@ -1,1 +1,4 @@
-export const backUrl = "http://api.nodejoo.site";
+export const backUrl =
+  process.env.NODE_ENV === "production"
+    ? "http://api.nodejoo.site"
+    : "http://localhost:3065";
