@@ -35,9 +35,9 @@ AWS.config.update({
 const upload = multer({
   storage: multerS3({
     s3: new AWS.S3(),
-    bucket: "react-nodebird-s3",
-    key(req, file, cd) {
-      cd(null, `original/${Date.now()} ${path.basename(file.originalname)}`);
+    bucket: "react-nodebird",
+    key(req, file, cb) {
+      cb(null, `original/${Date.now()}_${path.basename(file.originalname)}`);
     },
   }),
   limits: { fileSize: 20 * 1024 * 1024 }, // 20MB
@@ -218,7 +218,9 @@ router.post(
     console.log(req.files);
     //res.json(req.files.map((v) => v.filename));
     // s3 적용
-    res.json(req.files.map((v) => v.location));
+    res.json(
+      req.files.map((v) => v.location.replace(/\/original\//, "/thumb/"))
+    );
   }
 );
 
