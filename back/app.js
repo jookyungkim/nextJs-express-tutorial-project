@@ -77,7 +77,7 @@ app.use(
     resave: false,
     secret: process.env.COOKIE_SECRET,
     cookie: {
-      httpOnly: ture,
+      httpOnly: true,
       secure: false,
       domain: process.env.NODE_ENV === "production" && ".nodejoo.site",
     },
