@@ -76,6 +76,11 @@ app.use(
     saveUninitialized: false,
     resave: false,
     secret: process.env.COOKIE_SECRET,
+    cookie: {
+      httpOnly: ture,
+      secure: false,
+      domain: process.env.NODE_ENV === "production" && ".nodejoo.site",
+    },
   })
 );
 app.use(passport.initialize());
