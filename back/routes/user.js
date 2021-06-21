@@ -132,7 +132,7 @@ router.post("/", isNotLoggedIn, async (req, res, next) => {
   }
 });
 
-router.post("/logout", isLoggedIn, (req, res, next) => {
+router.post("/logout", (req, res, next) => {
   // POST /user/logout
   req.logout();
   req.session.destroy();
