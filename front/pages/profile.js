@@ -21,7 +21,7 @@ import {
 } from "../reducers/user";
 
 const fetcher = (url) =>
-  axios.get(url, { withCredentials: true }).then((result) => result.data);
+  axios.get(url, {}, { withCredentials: true }).then((result) => result.data);
 
 const Profile = () => {
   const dispatch = useDispatch();
