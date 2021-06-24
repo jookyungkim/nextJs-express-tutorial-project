@@ -78,7 +78,7 @@ app.use(
     secret: process.env.COOKIE_SECRET,
     cookie: {
       httpOnly: true,
-      secure: false,
+      secure: process.env.NODE_ENV === "production",
       domain: process.env.NODE_ENV === "production" && ".nodejoo.site",
     },
   })
