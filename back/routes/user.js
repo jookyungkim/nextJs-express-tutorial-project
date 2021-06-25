@@ -175,8 +175,9 @@ router.patch("/:userId/follow", isLoggedIn, async (req, res, next) => {
   }
 });
 
-router.get("/followers", isLoggedIn, async (req, res, next) => {
+router.get("/followers", async (req, res, next) => {
   // GET /user/followers
+  console.log("followers-Cookies: ", req.headers.cookie);
   try {
     const user = await User.findOne({ where: { id: req.user.id } });
     if (!user) {
@@ -193,8 +194,9 @@ router.get("/followers", isLoggedIn, async (req, res, next) => {
   }
 });
 
-router.get("/followings", isLoggedIn, async (req, res, next) => {
+router.get("/followings", async (req, res, next) => {
   // GET /user/followings
+  console.log("followings-Cookies: ", req.headers.cookie);
   try {
     const user = await User.findOne({ where: { id: req.user.id } });
     if (!user) {
