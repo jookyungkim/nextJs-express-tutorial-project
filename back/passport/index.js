@@ -7,11 +7,14 @@ module.exports = () => {
   passport.serializeUser((user, done) => {
     // routes/user.js req.login 함수가 실행될때 동시에 싱행된다.
     // 쿠키랑 묶어줄 사용자 로그인 ID
+    console.log("passport-serializeUser", user.id);
     done(null, user.id);
   });
 
   // 로그인 완료되고나서 매번 실행
   passport.deserializeUser(async (id, done) => {
+    console.log("deserializeUser-id", id);
+
     try {
       const user = await User.findOne({ where: { id } });
       done(null, user); // req.user

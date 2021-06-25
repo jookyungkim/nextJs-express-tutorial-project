@@ -55,6 +55,8 @@ router.post("/login", (req, res, next) => {
       console.error(err);
       return next(err);
     }
+    console.log("routes-user-login-user", user);
+    console.log("routes-user-login-info", info);
     if (info) {
       return res.status(401).send(info.reason); // 클라이언트 에러일경우 send로 메시지 전달
     }

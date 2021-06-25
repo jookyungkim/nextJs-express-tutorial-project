@@ -1,4 +1,5 @@
 exports.isLoggedIn = (req, res, next) => {
+  console.log("mddlewares-isAuthenticated", req.isAuthenticated());
   if (req.isAuthenticated()) {
     next();
   } else {
