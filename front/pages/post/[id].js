@@ -37,7 +37,6 @@ const Post = () => {
     </Head>
     <PostCard post={singlePost} />
   </AppLayout>
-);
   );
 };
 
