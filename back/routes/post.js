@@ -218,7 +218,7 @@ router.post(
     console.log(req.files);
     //res.json(req.files.map((v) => v.filename));
     // s3 적용
-    res.json(req.files.map((v) => v.location));
+    res.json(req.files.map((v) => v.location.replace(/\/original\//, "/thumb/")));
   }
 );
 
