@@ -11,7 +11,7 @@ import { LOAD_MY_INFO_REQUEST, LOAD_USER_REQUEST } from "../../reducers/user";
 import PostCard from "../../components/PostCard";
 import wrapper from "../../store/configureStore";
 import AppLayout from "../../components/AppLayout";
-import { getStaticProps } from "../about";
+
 
 const User = () => {
   const dispatch = useDispatch();
@@ -49,28 +49,16 @@ const User = () => {
     <AppLayout>
       {userInfo && (
         <Head>
-          <title>
-            {userInfo.nickname}
-            님의 글
-          </title>
-          <meta
-            name="description"
-            content={`${userInfo.nickname}님의 게시글`}
-          />
-          <meta
-            property="og:title"
-            content={`${userInfo.nickname}님의 게시글`}
-          />
-          <meta
-            property="og:description"
-            content={`${userInfo.nickname}님의 게시글`}
-          />
-          <meta
-            property="og:image"
-            content="https://nodebird.com/favicon.ico"
-          />
-          <meta property="og:url" content={`https://nodebird.com/user/${id}`} />
-        </Head>
+        <title>
+          {userInfo.nickname}
+          님의 글
+        </title>
+        <meta name="description" content={`${userInfo.nickname}님의 게시글`} />
+        <meta property="og:title" content={`${userInfo.nickname}님의 게시글`} />
+        <meta property="og:description" content={`${userInfo.nickname}님의 게시글`} />
+        <meta property="og:image" content="http://nodejoo.site/favicon.ico" />
+        <meta property="og:url" content={`http://nodejoo.site/user/${id}`} />
+      </Head>
       )}
       {userInfo && userInfo.id !== me?.id ? (
         <Card
