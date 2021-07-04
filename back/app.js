@@ -30,6 +30,7 @@ passportConfig();
 // 벡엔드 디버깅 용도
 // 프런트에서 벡엔드로 어떤걸 보냈는지 뜬다.
 if (process.env.NODE_ENV === "production") {
+  app.enable('trust proxy');
   app.use(morgan("combined"));
   app.use(hpp());
   app.use(helmet({ contentSecurityPolicy: false }));
@@ -76,13 +77,15 @@ app.use(
     saveUninitialized: false,
     resave: false,
     secret: process.env.COOKIE_SECRET,
+    proxy: process.env.NODE_ENV === 'production',
     cookie: {
       httpOnly: true,
-      secure: true, // https 적용하면 false 에서 true 변경해준다.
+      secure: process.env.NODE_ENV === 'production', // https 적용하면 false 에서 true 변경해준다.
       domain: process.env.NODE_ENV === "production" && ".nodejoo.site",
     },
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 
